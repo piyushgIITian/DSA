@@ -57,32 +57,37 @@
 #define eb emplace_back
 using namespace std;
 
-lli dp[10000006];
+
 int main()
 {
 //  Write your code here 
+    // lli arr[1000005];
+    vector<pair<lli,lli>> arr;
     int n;
-    int x;
-    vector<int> coins(n+1);
-
+    lli x,a;
     cin >> n >> x;
-  
+
     fr(0,n){
-        cin >> coins[i];
+        cin >> a;
+        arr.pb({a,i+1});
     }
-    fr(0,x){
-        dp[x] = INT_MAX;
-    }
-    dp[0] = 0;
-    fr(0,n+1){
-        for(int weight=1;weight<=x;weight++){
-            if(weight-coins[i-1]>=0){
-                dp[weight] = min(dp[weight-coins[i-1]]+1,dp[weight]);
-            }
+    lli start=0,end=n-1;
+    lli sum = 0;
+    lli mid;
+    sort(arr.begin(),arr.end());
+    while(start<end){
+        
+        sum = arr[start].first + arr[end].first;
+        if(sum==x){
+            cout <<  arr[start].second sp arr[end].second << endl;
+            return 0;
+        }else if(sum>=x){
+            end--;
+        }else{
+            start++;
         }
     }
-    if(dp[x]==INT_MAX) cout << -1<<endl;
-    else cout << dp[x] <<endl;
+    cout << "IMPOSSIBLE" <<endl;
 
     return 0;
 }

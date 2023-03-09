@@ -5,6 +5,7 @@
 
 /********   All Required Header Files ********/
 
+#include<iostream>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -57,32 +58,32 @@
 #define eb emplace_back
 using namespace std;
 
-lli dp[10000006];
+
 int main()
 {
 //  Write your code here 
-    int n;
-    int x;
-    vector<int> coins(n+1);
-
-    cin >> n >> x;
-  
-    fr(0,n){
-        cin >> coins[i];
+    lli n,m,ticket,customer;
+    
+    multiset<int,greater<int> > tickets;
+    cin>>n>>m;
+    while(n--){
+        cin >> ticket;
+        tickets.insert(ticket);
     }
-    fr(0,x){
-        dp[x] = INT_MAX;
-    }
-    dp[0] = 0;
-    fr(0,n+1){
-        for(int weight=1;weight<=x;weight++){
-            if(weight-coins[i-1]>=0){
-                dp[weight] = min(dp[weight-coins[i-1]]+1,dp[weight]);
+    while(m--){
+        cin >> customer;
+        auto it = tickets.lower_bound(customer);
+    
+        cout << *it sp customer sp "iterator"<< endl;
+        if(it == tickets.end()){
+            cout << -1 <<endl;
             }
+        else {
+            cout << *it << endl;
+            tickets.erase(it);
         }
+
     }
-    if(dp[x]==INT_MAX) cout << -1<<endl;
-    else cout << dp[x] <<endl;
 
     return 0;
 }

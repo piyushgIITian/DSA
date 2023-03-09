@@ -1,3 +1,10 @@
+## Author: Piyush Gautam, IIT Kharagpur
+## Contact: mailto:piyushgautamtg@gmail.com
+## Have Fun Coding! <3<3
+
+
+
+
 Run commands for mac gcc
 
 gcc filename -o filename.out -lstdc++

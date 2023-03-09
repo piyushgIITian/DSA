@@ -5,6 +5,7 @@
 
 /********   All Required Header Files ********/
 
+#include<iostream>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -57,32 +58,32 @@
 #define eb emplace_back
 using namespace std;
 
-lli dp[10000006];
+
 int main()
 {
 //  Write your code here 
-    int n;
-    int x;
-    vector<int> coins(n+1);
+    lli n,s,e;
+ 
+    vector<pair<lli,lli>> events;
+    cin >> n;
+    
+    while(n--){
+        cin >> s>>e;
+        events.pb(make_pair(e,s));
 
-    cin >> n >> x;
-  
-    fr(0,n){
-        cin >> coins[i];
     }
-    fr(0,x){
-        dp[x] = INT_MAX;
-    }
-    dp[0] = 0;
-    fr(0,n+1){
-        for(int weight=1;weight<=x;weight++){
-            if(weight-coins[i-1]>=0){
-                dp[weight] = min(dp[weight-coins[i-1]]+1,dp[weight]);
-            }
+    sort(events.begin(), events.end());
+    int currentEventEnd = events[0].first;    
+    int ans = 1;   
+    for(int i=1;i<events.size();i++){
+   
+        if(events[i].second >= currentEventEnd){
+            currentEventEnd = events[i].first;
+            ans++;
         }
     }
-    if(dp[x]==INT_MAX) cout << -1<<endl;
-    else cout << dp[x] <<endl;
 
+
+    cout << ans << endl;
     return 0;
 }

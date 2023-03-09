@@ -5,6 +5,7 @@
 
 /********   All Required Header Files ********/
 
+#include<iostream>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -57,32 +58,30 @@
 #define eb emplace_back
 using namespace std;
 
-lli dp[10000006];
+
+// https://cp-algorithms.com/algebra/binary-exp.html
+
+lli binpow(lli a, lli n){
+    if(n==0) return 1;
+    lli res = binpow(a,n/2);
+    if(n&1) return res*res*a;
+    else return res*res;
+}
+lli binpowiter(lli a, lli n){
+    lli res = 1;
+    while(n>0){
+      
+        if(n&1) res = res*a;   // n&1 checks for odd numbers
+        a = a*a; // seperate squares from numbers
+        n>>=1;  
+    }
+    return res;
+}
 int main()
 {
 //  Write your code here 
-    int n;
-    int x;
-    vector<int> coins(n+1);
 
-    cin >> n >> x;
-  
-    fr(0,n){
-        cin >> coins[i];
-    }
-    fr(0,x){
-        dp[x] = INT_MAX;
-    }
-    dp[0] = 0;
-    fr(0,n+1){
-        for(int weight=1;weight<=x;weight++){
-            if(weight-coins[i-1]>=0){
-                dp[weight] = min(dp[weight-coins[i-1]]+1,dp[weight]);
-            }
-        }
-    }
-    if(dp[x]==INT_MAX) cout << -1<<endl;
-    else cout << dp[x] <<endl;
-
+    cout << "BinaryExponentiation iterative "<<binpowiter(3,3) <<endl;
+    cout << "BinaryExponentiation recursive "<<binpow(3,3) <<endl;
     return 0;
 }

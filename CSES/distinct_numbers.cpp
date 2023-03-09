@@ -5,6 +5,7 @@
 
 /********   All Required Header Files ********/
 
+#include<iostream>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -57,32 +58,40 @@
 #define eb emplace_back
 using namespace std;
 
-lli dp[10000006];
+
 int main()
-{
-//  Write your code here 
-    int n;
-    int x;
-    vector<int> coins(n+1);
+{   
+   //method 1
 
-    cin >> n >> x;
-  
+    // vector<lli> inputs;
+    // lli n;
+    // cin >> n;
+    // fr(0,n){
+    //     lli temp;
+    //     cin >> temp;
+    //     inputs.pb(temp);
+    // }
+    // sort(inputs.begin(), inputs.end());
+    // lli prev=inputs[0];
+    // lli count = 0;
+    // cf(1,n){
+    //     if(inputs[i]!=prev){
+    //         count++;
+    //     }
+    //     prev = inputs[i];
+    // }
+    // cout << count;
+    // return 0;
+
+    // method 2 
+    set<int> unique_numbers;
+    lli n;
+    cin >> n;
     fr(0,n){
-        cin >> coins[i];
+        lli temp;
+        cin >> temp;
+        unique_numbers.insert(temp);
     }
-    fr(0,x){
-        dp[x] = INT_MAX;
-    }
-    dp[0] = 0;
-    fr(0,n+1){
-        for(int weight=1;weight<=x;weight++){
-            if(weight-coins[i-1]>=0){
-                dp[weight] = min(dp[weight-coins[i-1]]+1,dp[weight]);
-            }
-        }
-    }
-    if(dp[x]==INT_MAX) cout << -1<<endl;
-    else cout << dp[x] <<endl;
-
+    cout << unique_numbers.size();
     return 0;
 }
