@@ -9,3 +9,4 @@ gcc filename -o filename.out -lstdc++
 
 g++ -std=c++11 main.cpp -o main.out
 ./main.out
+<!-- v7.0.0.73-10860 -->
